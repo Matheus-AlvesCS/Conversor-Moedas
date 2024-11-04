@@ -51,6 +51,10 @@ select, input {
     line-height: 18px;
 }
 
+select {
+    cursor: pointer;
+}
+
 .main-button {
     background-color: #772FD3;
     color: #FFFFFF;
