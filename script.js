@@ -20,6 +20,11 @@ function convertCurrency() {
     const euroWorth = 6.23
     const libraWorth = 7.51
 
+    if (firstC.value == "real" && secondC.value == "real") {
+        cv1.innerHTML = formatCurrency(input.value, "pt-BR", "BRL")
+        cv2.innerHTML = formatCurrency(input.value, "pt-BR", "BRL")
+    }
+
     if (firstC.value == "real" && secondC.value == "dolar") {
         cv1.innerHTML = formatCurrency(input.value, "pt-BR", "BRL")
         cv2.innerHTML = formatCurrency(input.value / dolarWorth, "en-US", "USD")
@@ -33,6 +38,66 @@ function convertCurrency() {
     if (firstC.value == "real" && secondC.value == "libra") {
         cv1.innerHTML = formatCurrency(input.value, "pt-BR", "BRL")
         cv2.innerHTML = formatCurrency(input.value / libraWorth, "en-GB", "GBP")
+    }
+
+    if (firstC.value == "dolar" && secondC.value == "dolar") {
+        cv1.innerHTML = formatCurrency(input.value, "en-US", "USD")
+        cv2.innerHTML = formatCurrency(input.value, "en-US", "USD")
+    }
+
+    if (firstC.value == "dolar" && secondC.value == "real") {
+        cv1.innerHTML = formatCurrency(input.value, "en-US", "USD")
+        cv2.innerHTML = formatCurrency(input.value * dolarWorth, "pt-BR", "BRL")
+    }
+
+    if (firstC.value == "dolar" && secondC.value == "euro") {
+        cv1.innerHTML = formatCurrency(input.value, "en-US", "USD")
+        cv2.innerHTML = formatCurrency(input.value * 0.91, "es-ES", "EUR")
+    }
+
+    if (firstC.value == "dolar" && secondC.value == "libra") {
+        cv1.innerHTML = formatCurrency(input.value, "en-US", "USD")
+        cv2.innerHTML = formatCurrency(input.value * 0.77, "en-GB", "GBP")
+    }
+
+    if (firstC.value == "euro" && secondC.value == "euro") {
+        cv1.innerHTML = formatCurrency(input.value, "es-ES", "EUR")
+        cv2.innerHTML = formatCurrency(input.value, "es-ES", "EUR")
+    }
+
+    if (firstC.value == "euro" && secondC.value == "real") {
+        cv1.innerHTML = formatCurrency(input.value, "es-ES", "EUR")
+        cv2.innerHTML = formatCurrency(input.value * euroWorth, "pt-BR", "BRL")
+    }
+
+    if (firstC.value == "euro" && secondC.value == "dolar") {
+        cv1.innerHTML = formatCurrency(input.value, "es-ES", "EUR")
+        cv2.innerHTML = formatCurrency(input.value / 0.91, "en-US", "USD")
+    }
+
+    if (firstC.value == "euro" && secondC.value == "libra") {
+        cv1.innerHTML = formatCurrency(input.value, "es-ES", "EUR")
+        cv2.innerHTML = formatCurrency(input.value * 0.84, "en-GB", "GBP")
+    }
+
+    if (firstC.value == "libra" && secondC.value == "libra") {
+        cv1.innerHTML = formatCurrency(input.value, "en-GB", "GBP")
+        cv2.innerHTML = formatCurrency(input.value, "en-GB", "GBP")
+    }
+
+    if (firstC.value == "libra" && secondC.value == "real") {
+        cv1.innerHTML = formatCurrency(input.value, "en-GB", "GBP")
+        cv2.innerHTML = formatCurrency(input.value * libraWorth, "pt-BR", "BRL")
+    }
+
+    if (firstC.value == "libra" && secondC.value == "dolar") {
+        cv1.innerHTML = formatCurrency(input.value, "en-GB", "GBP")
+        cv2.innerHTML = formatCurrency(input.value * 1.30, "en-US", "USD")
+    }
+
+    if (firstC.value == "libra" && secondC.value == "euro") {
+        cv1.innerHTML = formatCurrency(input.value, "en-GB", "GBP")
+        cv2.innerHTML = formatCurrency(input.value * 1.19, "es-ES", "EUR")
     }
 }
 
@@ -59,7 +124,7 @@ function changeCurrency() {
 
     if (firstC.value == "libra") {
         firstF.src = "./assets/libra.png"
-        firstN.innerHTML = "Libra"
+        firstN.innerHTML = "Libra Esterlina"
     }
 
     if (secondC.value == "real") {
@@ -87,3 +152,4 @@ function changeCurrency() {
 
 mainbtn.addEventListener("click", convertCurrency)
 secondC.addEventListener("change", changeCurrency)
+firstC.addEventListener("change", changeCurrency)
