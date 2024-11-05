@@ -106,3 +106,26 @@ select {
     font-size: 20px;
     line-height: 18px;
 }
+
+@media screen and (max-width: 600px) {
+    body {
+        display: block;
+        height: 100dvh;
+        width: 100dvw;
+    }
+
+    #logo {
+        display: none;
+    }
+
+    .container {
+        height: 100%;
+        width: 100%;
+        border-radius: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10%;
+        padding: 10px;
+    }
+}
