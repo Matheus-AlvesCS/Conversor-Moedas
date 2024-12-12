@@ -1,3 +1,5 @@
+import getData from "./getData.js"
+
 const mainbtn = document.querySelector(".main-button")
 const input = document.querySelector(".main-input")
 const firstC = document.querySelector("#first-currency")
@@ -15,10 +17,8 @@ function formatCurrency(value, local, currency) {
 cv1.innerHTML = formatCurrency(0, "pt-BR", "BRL")
 cv2.innerHTML = formatCurrency(0, "en-US", "USD")
 
-function convertCurrency() {
-    const dolarWorth = 5.76
-    const euroWorth = 6.23
-    const libraWorth = 7.51
+async function convertCurrency() {
+    const converts = await getData()
 
     if (firstC.value == "real" && secondC.value == "real") {
         cv1.innerHTML = formatCurrency(input.value, "pt-BR", "BRL")
@@ -27,17 +27,17 @@ function convertCurrency() {
 
     if (firstC.value == "real" && secondC.value == "dolar") {
         cv1.innerHTML = formatCurrency(input.value, "pt-BR", "BRL")
-        cv2.innerHTML = formatCurrency(input.value / dolarWorth, "en-US", "USD")
+        cv2.innerHTML = formatCurrency(input.value / converts.dolarWorth, "en-US", "USD")
     }
 
     if (firstC.value == "real" && secondC.value == "euro") {
         cv1.innerHTML = formatCurrency(input.value, "pt-BR", "BRL")
-        cv2.innerHTML = formatCurrency(input.value / euroWorth, "es-ES", "EUR")
+        cv2.innerHTML = formatCurrency(input.value / converts.euroWorth, "es-ES", "EUR")
     }
 
     if (firstC.value == "real" && secondC.value == "libra") {
         cv1.innerHTML = formatCurrency(input.value, "pt-BR", "BRL")
-        cv2.innerHTML = formatCurrency(input.value / libraWorth, "en-GB", "GBP")
+        cv2.innerHTML = formatCurrency(input.value / converts.libraWorth, "en-GB", "GBP")
     }
 
     if (firstC.value == "dolar" && secondC.value == "dolar") {
@@ -47,17 +47,17 @@ function convertCurrency() {
 
     if (firstC.value == "dolar" && secondC.value == "real") {
         cv1.innerHTML = formatCurrency(input.value, "en-US", "USD")
-        cv2.innerHTML = formatCurrency(input.value * dolarWorth, "pt-BR", "BRL")
+        cv2.innerHTML = formatCurrency(input.value * converts.dolarWorth, "pt-BR", "BRL")
     }
 
     if (firstC.value == "dolar" && secondC.value == "euro") {
         cv1.innerHTML = formatCurrency(input.value, "en-US", "USD")
-        cv2.innerHTML = formatCurrency(input.value * 0.91, "es-ES", "EUR")
+        cv2.innerHTML = formatCurrency(input.value * converts.dolarToEuro, "es-ES", "EUR")
     }
 
     if (firstC.value == "dolar" && secondC.value == "libra") {
         cv1.innerHTML = formatCurrency(input.value, "en-US", "USD")
-        cv2.innerHTML = formatCurrency(input.value * 0.77, "en-GB", "GBP")
+        cv2.innerHTML = formatCurrency(input.value * converts.dolarToLibra, "en-GB", "GBP")
     }
 
     if (firstC.value == "euro" && secondC.value == "euro") {
@@ -67,17 +67,17 @@ function convertCurrency() {
 
     if (firstC.value == "euro" && secondC.value == "real") {
         cv1.innerHTML = formatCurrency(input.value, "es-ES", "EUR")
-        cv2.innerHTML = formatCurrency(input.value * euroWorth, "pt-BR", "BRL")
+        cv2.innerHTML = formatCurrency(input.value * converts.euroWorth, "pt-BR", "BRL")
     }
 
     if (firstC.value == "euro" && secondC.value == "dolar") {
         cv1.innerHTML = formatCurrency(input.value, "es-ES", "EUR")
-        cv2.innerHTML = formatCurrency(input.value / 0.91, "en-US", "USD")
+        cv2.innerHTML = formatCurrency(input.value / converts.dolarToEuro, "en-US", "USD")
     }
 
     if (firstC.value == "euro" && secondC.value == "libra") {
         cv1.innerHTML = formatCurrency(input.value, "es-ES", "EUR")
-        cv2.innerHTML = formatCurrency(input.value * 0.84, "en-GB", "GBP")
+        cv2.innerHTML = formatCurrency(input.value * converts.euroToLibra, "en-GB", "GBP")
     }
 
     if (firstC.value == "libra" && secondC.value == "libra") {
@@ -87,17 +87,17 @@ function convertCurrency() {
 
     if (firstC.value == "libra" && secondC.value == "real") {
         cv1.innerHTML = formatCurrency(input.value, "en-GB", "GBP")
-        cv2.innerHTML = formatCurrency(input.value * libraWorth, "pt-BR", "BRL")
+        cv2.innerHTML = formatCurrency(input.value * converts.libraWorth, "pt-BR", "BRL")
     }
 
     if (firstC.value == "libra" && secondC.value == "dolar") {
         cv1.innerHTML = formatCurrency(input.value, "en-GB", "GBP")
-        cv2.innerHTML = formatCurrency(input.value * 1.30, "en-US", "USD")
+        cv2.innerHTML = formatCurrency(input.value / converts.dolarToLibra, "en-US", "USD")
     }
 
     if (firstC.value == "libra" && secondC.value == "euro") {
         cv1.innerHTML = formatCurrency(input.value, "en-GB", "GBP")
-        cv2.innerHTML = formatCurrency(input.value * 1.19, "es-ES", "EUR")
+        cv2.innerHTML = formatCurrency(input.value / converts.euroToLibra, "es-ES", "EUR")
     }
 }
 
